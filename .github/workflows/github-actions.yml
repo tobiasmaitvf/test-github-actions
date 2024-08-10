@@ -17,7 +17,5 @@ jobs:
       # - name: Check ENV
       #   run: echo "${{ vars.AWS_SECRET }}"
       - name: Run a script
-        env:
-          AWS_SECRET: ${{ vars.AWS_SECRET }}
         run: |
-          echo "Using the API key: $AWS_SECRET"
+          printenv
