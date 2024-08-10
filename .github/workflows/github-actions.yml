@@ -9,6 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install dependencies
-        run: |
-          npm install
-          npm ci
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Check lint
+        run: npm run lint
