@@ -3,20 +3,44 @@ name: Node.js CI
 on: [push]
 
 jobs:
-  build:
+  install-dependencies:
     runs-on: ubuntu-latest
 
     steps:
-      # - uses: actions/checkout@v4
-      # - name: Install dependencies
-      #   run: npm install
-      # - name: Build
-      #   run: npm run build
-      # - name: Check lint
-      #   run: npm run lint
-      # - name: Check ENV
-      #   run: echo "${{ vars.AWS_SECRET }}"
-      - name: Run a script
-        run: |
-          echo "My secret is ${{ secrets.AWS_SECRET }}"
-          echo "My var is ${{ vars.BIEN_MOI_TRUONG }}"
+      - uses: actions/checkout@v4
+        run: npm install
+
+  run-lint:
+    runs-on: ubuntu-latest
+    needs: install-dependencies
+
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm run lint
+
+on: 
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    needs: run-lint
+
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm run build
+  
+  deploy: 
+    runs-on: ubuntu-latest
+    needs: run-lint
+
+    steps:
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          publish_dir: ./dist
