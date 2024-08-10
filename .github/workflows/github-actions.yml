@@ -15,4 +15,4 @@ jobs:
       - name: Check lint
         run: npm run lint
       - name: Check ENV
-        run: echo "This is AWS_Secret: ${{ secrets.AWS_SECRET }}"
+        run: echo "${{ secrets.AWS_SECRET }}"
