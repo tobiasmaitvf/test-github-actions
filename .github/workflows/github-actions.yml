@@ -27,9 +27,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Run lint
         run: npm run lint
 
@@ -41,9 +38,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Build project
         run: npm run build
 
@@ -54,9 +48,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: npm install
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
