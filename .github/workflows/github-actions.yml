@@ -18,4 +18,5 @@ jobs:
       #   run: echo "${{ vars.AWS_SECRET }}"
       - name: Run a script
         run: |
-          printenv
+          echo "My secret is ${{ secrets.AWS_SECRET }}"
+          echo "My var is ${{ vars.BIEN_MOI_TRUONG }}"
