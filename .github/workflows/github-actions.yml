@@ -18,6 +18,6 @@ jobs:
       #   run: echo "${{ vars.AWS_SECRET }}"
       - name: Run a script
         env:
-          AWS_SECRET: ${{ secrets.AWS_SECRET }}
+          AWS_SECRET: ${{ vars.AWS_SECRET }}
         run: |
           echo "Using the API key: $AWS_SECRET"
